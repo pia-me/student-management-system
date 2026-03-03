@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1 id="formTitle">Login</h1>
+            
+            <!-- STUDENT LOGIN FORM -->
+            <form id="loginForm" class="form-type student-form" style="display: none;">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Login</button>
+                <button type="reset" class="btn-reset">Clear</button>
+            </form>
+
+            <!-- TEACHER LOGIN FORM -->
+            <form id="teacherForm" class="form-type teacher-form" style="display: none;">
+                <div class="form-group">
+                    <label for="teacherUsername">Username:</label>
+                    <input type="text" id="teacherUsername" name="teacherUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="teacherPassword">Password:</label>
+                    <input type="password" id="teacherPassword" name="teacherPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+                <button type="reset" class="btn-reset">Clear</button>
+            </form>
+
+            <!-- ADMIN LOGIN FORM -->
+            <form id="adminForm" class="form-type admin-form" style="display: none;">
+                <div class="form-group">
+                    <label for="adminUsername">Username:</label>
+                    <input type="text" id="adminUsername" name="adminUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password:</label>
+                    <input type="password" id="adminPassword" name="adminPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+                <button type="reset" class="btn-reset">Clear</button>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <p>Login successful! Redirecting...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <p></p>
+            </div>
+        </div>
+
+        <div class="saved-data" id="savedDataSection" style="display: none;">
+            <h2>Saved Student Info</h2>
+            <!-- alert area for issues -->
+            <div id="issueAlert" class="issue-alert" style="color: red; font-weight: bold;"></div>
+            <div id="savedDataDisplay"></div>
+            <!-- Additional dashboard features -->
+            <div class="dashboard-features">
+                <h3>Notifications</h3>
+                <div id="notifications"></div>
+
+                <h3>Academic Analytics</h3>
+                <div id="analytics"></div>
+
+                <button id="syncRecordsBtn" class="btn-sync">Sync Records</button>
+            </div>
+            <button class="btn-logout">Logout</button>
+        </div>
+
+        <!-- Teacher dashboard (hidden until teacher logs in) -->
+        <div class="teacher-data" id="teacherDataSection" style="display: none;">
+            <h2>Teacher Dashboard</h2>
+            <div id="teacherDataDisplay"></div>
+            <button class="btn-logout">Logout</button>
+        </div>
+
+        <!-- Admin dashboard (hidden until admin logs in) -->
+        <div class="admin-data" id="adminDataSection" style="display: none;">
+            <h2>Admin Dashboard</h2>
+            <div id="adminDataDisplay"></div>
+            <button class="btn-logout">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

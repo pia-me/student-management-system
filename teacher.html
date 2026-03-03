@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Teacher Dashboard</h1>
+            <button class="btn-logout" onclick="performLogout()">Logout</button>
+        </div>
+        
+        <div class="teacher-info" id="teacherInfo">
+            <!-- Teacher info will be displayed here -->
+        </div>
+        
+        <div class="dashboard-content">
+            <div class="dashboard-section">
+                <h2>My Students</h2>
+                <table border="1" cellpadding="4">
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Progress</th>
+                        <th>Remedial</th>
+                        <th>Makeup</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody id="studentTable">
+                        <!-- Student data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="dashboard-section">
+                <h2>Notifications</h2>
+                <div id="notifications"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in as teacher
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('teacherLogin');
+            if (!savedData) {
+                // Not logged in, redirect to login
+                window.location.href = 'index.html';
+            } else {
+                const teacher = JSON.parse(savedData);
+                displayTeacherDashboard(teacher);
+            }
+        });
+        
+        function displayTeacherDashboard(teacher) {
+            const teacherInfo = document.getElementById('teacherInfo');
+            teacherInfo.innerHTML = `
+                <div class="info-card">
+                    <h2>Welcome, ${escapeHtml(teacher.firstName)} ${escapeHtml(teacher.lastName)}</h2>
+                    <p><strong>Teacher ID:</strong> ${escapeHtml(teacher.teacherId)}</p>
+                    <p><strong>Subject:</strong> ${escapeHtml(teacher.subject)}</p>
+                    <p><strong>Login Time:</strong> ${escapeHtml(teacher.loginTime)}</p>
+                </div>
+            `;
+            
+            // Display student table
+            const studentTable = document.getElementById('studentTable');
+            studentTable.innerHTML = sampleTeacherData.students.map(s => `
+                <tr>
+                    <td>${escapeHtml(s.name)}</td>
+                    <td>${escapeHtml(s.course)}</td>
+                    <td>${escapeHtml(s.progress)}</td>
+                    <td>${escapeHtml(s.remedial.join(', ') || 'None')}</td>
+                    <td>${escapeHtml(s.makeup.join(', ') || 'None')}</td>
+                    <td><button class="btn-update" data-student="${escapeHtml(s.name)}">Update</button></td>
+                </tr>
+            `).join('');
+            
+            // Add event listeners to update buttons
+            document.querySelectorAll('.btn-update').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const studentName = btn.getAttribute('data-student');
+                    alert('Update record for ' + studentName + ' (simulation)');
+                });
+            });
+            
+            startNotificationSimulation();
+        }
+    </script>
+</body>
+</html>
+

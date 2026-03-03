@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Portal</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="header">
+                <h1>Student Management System</h1>
+                <p>Select Your Role to Continue</p>
+            </div>
+
+            <div class="role-selection">
+                <div class="role-card student-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="80" height="80">
+                            <path d="M32 10C18.74 10 8 15.82 8 23v18c0 7.18 10.74 13 24 13s24-5.82 24-13V23c0-7.18-10.74-13-24-13z" fill="#FFD700"/>
+                            <path d="M32 48c-13.26 0-24-5.82-24-13V23c0 7.18 10.74 13 24 13s24-5.82 24-13v12c0 7.18-10.74 13-24 13z" fill="#8B0000"/>
+                        </svg>
+                    </div>
+                    <h2>Student</h2>
+                    <p>Login as a Student</p>
+                    <button class="btn-role" onclick="navigateTo('student')">Enter as Student</button>
+                </div>
+
+                <div class="role-card teacher-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="80" height="80">
+                            <path d="M32 8L8 22v6h48v-6L32 8z" fill="#FFD700"/>
+                            <rect x="12" y="28" width="40" height="24" fill="#8B0000"/>
+                            <rect x="18" y="32" width="8" height="8" fill="#FFD700"/>
+                            <rect x="38" y="32" width="8" height="8" fill="#FFD700"/>
+                        </svg>
+                    </div>
+                    <h2>Teacher</h2>
+                    <p>Login as a Teacher</p>
+                    <button class="btn-role" onclick="navigateTo('teacher')">Enter as Teacher</button>
+                </div>
+
+                <div class="role-card admin-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="80" height="80">
+                            <circle cx="32" cy="20" r="12" fill="#FFD700"/>
+                            <path d="M8 42c0-8 7.16-14 24-14s24 6 24 14v14H8V42z" fill="#8B0000"/>
+                            <path d="M32 42l6-6 6 6" fill="#FFD700"/>
+                            <path d="M32 48v8" fill="#FFD700" stroke="#FFD700" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h2>Administrator</h2>
+                    <p>Login as an Admin</p>
+                    <button class="btn-role" onclick="navigateTo('admin')">Enter as Admin</button>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>&copy; 2026 Student Management System. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+<script src="script.js"></script>
+</body>
+<script src="script.js"></script>
+</body>
+</html>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Student Dashboard</h1>
+            <button class="btn-logout" onclick="performLogout()">Logout</button>
+        </div>
+        
+        <div class="student-info" id="studentInfo">
+            <!-- Student info will be displayed here -->
+        </div>
+        
+        <div class="dashboard-content">
+            <div class="dashboard-section">
+                <h2>My Grades</h2>
+                <div id="gradesSection"></div>
+            </div>
+            
+            <div class="dashboard-section">
+                <h2>Schedule</h2>
+                <div id="scheduleSection"></div>
+            </div>
+            
+            <div class="dashboard-section">
+                <h2>Notifications</h2>
+                <div id="notifications"></div>
+            </div>
+            
+            <div class="dashboard-section">
+                <h3>Academic Analytics</h3>
+                <div id="analytics"></div>
+            </div>
+        </div>
+        
+        <!-- Issue Alert -->
+        <div id="issueAlert" class="issue-alert" style="color: red; font-weight: bold;"></div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in as student
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('studentLogin');
+            if (!savedData) {
+                // Not logged in, redirect to login
+                window.location.href = 'index.html';
+            } else {
+                const student = JSON.parse(savedData);
+                displayStudentDashboard(student);
+            }
+        });
+        
+        function displayStudentDashboard(student) {
+            const studentInfo = document.getElementById('studentInfo');
+            studentInfo.innerHTML = `
+                <div class="info-card">
+                    <h2>Welcome, ${escapeHtml(student.firstName)} ${escapeHtml(student.lastName)}</h2>
+                    <p><strong>LRN ID:</strong> ${escapeHtml(student.lrnId)}</p>
+                    <p><strong>Course:</strong> ${escapeHtml(student.course || 'N/A')}</p>
+                    <p><strong>Year Level:</strong> ${escapeHtml(student.yearLevel || 'N/A')}</p>
+                    <p><strong>Login Time:</strong> ${escapeHtml(student.loginTime)}</p>
+                </div>
+            `;
+            
+            // Display grades
+            const gradesSection = document.getElementById('gradesSection');
+            gradesSection.innerHTML = `
+                <ul>
+                    ${sampleData.grades.map(g => `<li>${escapeHtml(g.subject)}: ${g.grade != null ? escapeHtml(g.grade) : '<em>Incomplete</em>'}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Display schedule
+            const scheduleSection = document.getElementById('scheduleSection');
+            scheduleSection.innerHTML = `
+                <ul>
+                    ${sampleData.schedule.map(s => `<li>${escapeHtml(s.day)} ${escapeHtml(s.time)} – ${escapeHtml(s.subject)}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Check for issues
+            const missing = sampleData.missingRecords.length > 0;
+            const conflicts = detectScheduleConflicts(sampleData.schedule);
+            if (missing || conflicts.length) {
+                const alertDiv = document.getElementById('issueAlert');
+                alertDiv.textContent = 'Attention: you have ' + 
+                    (missing ? `${sampleData.missingRecords.length} incomplete record(s)` : '') + 
+                    (missing && conflicts.length ? ' and ' : '') + 
+                    (conflicts.length ? `${conflicts.length} schedule conflict(s)` : '') + 
+                    '. Please organize your subjects.';
+            }
+            
+            // Render analytics
+            renderAnalytics(student, sampleData);
+            startNotificationSimulation();
+        }
+    </script>
+</body>
+</html>
+
