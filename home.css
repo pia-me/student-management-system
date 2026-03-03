@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #FFD700 0%, #8B0000 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.content {
+    text-align: center;
+}
+
+.header {
+    color: white;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 20px;
+    opacity: 0.95;
+}
+
+.role-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.role-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.role-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.role-card .icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.role-card svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.role-card h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.role-card p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.btn-role {
+    background-color: #FFD700;
+    color: #8B0000;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.btn-role:hover {
+    background-color: #FFC700;
+    transform: scale(1.05);
+}
+
+.btn-role:active {
+    transform: scale(0.98);
+}
+
+.student-card {
+    border-top: 4px solid #FFD700;
+}
+
+.teacher-card {
+    border-top: 4px solid #8B0000;
+}
+
+.admin-card {
+    border-top: 4px solid #ca580d;
+}
+
+.footer {
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .role-selection {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .role-card {
+        padding: 30px 20px;
+    }
+
+    .role-card h2 {
+        font-size: 24px;
+    }
+
+    .btn-role {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .role-card {
+        padding: 25px 15px;
+    }
+
+    .role-card h2 {
+        font-size: 20px;
+    }
+
+    .role-card p {
+        font-size: 14px;
+    }
+
+    .btn-role {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
